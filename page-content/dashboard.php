@@ -66,10 +66,12 @@
                     <span class="info-box-text">Income</span>
                     <span class="info-box-number">
                     <?php
-                    $query = $mysqli->query("SELECT SUM(income) AS total FROM sales WHERE status_income='Y' ");
+                    $query = $mysqli->query("SELECT SUM(income) AS total FROM sales WHERE status='paid' AND status_income='Y' ");
                     $row = $query->fetch_array();
                     echo "Masuk : ".rupiah($row['total']);
-                    echo "<br>Belum Masuk : ".rupiah($row['total']);
+                    $query2 = $mysqli->query("SELECT SUM(income) AS total FROM sales WHERE status='unpaid' OR status='paid' AND status_income='N'  ");
+                    $row2 = $query2->fetch_array();
+                    echo "<br>Belum Masuk : ".rupiah($row2['total']);
                     ?>
                     </span>
                 </div>
