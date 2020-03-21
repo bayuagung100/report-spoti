@@ -1,21 +1,15 @@
 <?php
 //server
-// $servername = "localhost";
-// $username = "u781878258_helaihijab";
-// $password = "bayuagung123";
-// $database = "u781878258_helaihijab";
-
-//remote server
-// $servername = "srv209.main-hosting.eu";
-// $username = "u781878258_helaihijab";
-// $password = "bayuagung123";
-// $database = "u781878258_helaihijab";
+$servername = "localhost";
+$username = "u328098603_spoti";
+$password = "bayuagung123";
+$database = "u328098603_spoti";
 
 //localpc
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "reports";
+// $servername = "localhost";
+// $username = "root";
+// $password = "";
+// $database = "reports";
  
 // Create connection
 $mysqli = new mysqli($servername, $username, $password, $database);
