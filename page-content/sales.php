@@ -39,8 +39,8 @@ switch ($show) {
             $income = $data['income'];
             $nama = $data['nama'];
             $email = $data['email'];
-            $tanggal = $data['tanggal_order'];
-            $garansi = $data['tanggal_garansi'];
+            $tanggal = date("d/m/Y", strtotime($data['tanggal_order']));
+            $garansi = date("d/m/Y", strtotime($data['tanggal_garansi']));
             $traffic_source = $data['traffic_source'];
             $status = $data['status'];
             $status_income = $data['status_income'];
