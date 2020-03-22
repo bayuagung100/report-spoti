@@ -12,6 +12,145 @@
 <section class="content">
   <div class="container-fluid">
     <div class="row">
+            <!-- <div class="col-md-12">
+              <div class="card">
+                <div class="card-header border-0">
+                  <div class="d-flex justify-content-between">
+                    <h3 class="card-title">Sales Graph</h3>
+                    <a href="javascript:void(0);">View Report</a>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="d-flex">
+                    <p class="d-flex flex-column">
+                      <span class="text-bold text-lg">
+                      <?php
+                      $query = $mysqli->query("SELECT * FROM sales");
+                      $jml = $query->num_rows;
+                      echo $jml;
+                      ?>
+                      </span>
+                      <span>Sales Over Time</span>
+                    </p>
+                  </div>
+
+                  <div class="position-relative mb-4">
+                    <canvas id="visitors-chart" height="200"></canvas>
+                  </div>
+
+                  <div class="d-flex flex-row justify-content-end">
+                    <span class="mr-2">
+                      <i class="fas fa-square text-primary"></i> This Week
+                    </span>
+
+                    <span>
+                      <i class="fas fa-square text-gray"></i> Last Week
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <script>
+              $(function() {
+                  'use strict'
+
+                  var ticksStyle = {
+                  fontColor: '#495057',
+                  fontStyle: 'bold'
+                  }
+
+                  var mode      = 'index'
+                  var intersect = true
+                  var $visitorsChart = $('#visitors-chart')
+                  var visitorsChart  = new Chart($visitorsChart, {
+                      data   : {
+                          labels  : ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
+                          
+                          datasets: [{
+                              type                : 'line',
+                              data                : [
+                                <?php 
+                                $query = $mysqli->query('SELECT * FROM sales ');
+                                $data = $query->fetch_array();
+                                while ($data = $query->fetch_array()) {
+                                  $dt = strtotime($data['tanggal_order']);
+                                  $day = date("l", $dt);
+                                  if ($day == "Sunday") {
+                                    $minggu = "Minggu";
+                                  } elseif ($day == "Monday") {
+                                    $senin = "Senin";
+                                  } elseif ($day == "Tuesday") {
+                                    $selasa = "Selasa";
+                                  } elseif ($day == "Wednesday") {
+                                    $rabu = "Rabu";
+                                  } elseif ($day == "Thursday") {
+                                    $kamis = "Kamis";
+                                  } elseif ($day == "Friday") {
+                                    $jumat = "Jumat";
+                                  } elseif ($day == "Saturday") {
+                                    $sabtu = "Sabtu";
+                                  } 
+
+                                  echo count($minggu).",".count($senin).",".count($selasa).",".count($rabu).",".count($kamis).",".count($juamt).",".count($sabtu).",".count($minggu);
+                                }
+                                
+                                ?>
+                                100, 120, 170, 167, 180, 177, 160,
+                                ],
+                              backgroundColor     : 'transparent',
+                              borderColor         : '#007bff',
+                              pointBorderColor    : '#007bff',
+                              pointBackgroundColor: '#007bff',
+                              fill                : false
+                          },
+                              {
+                              type                : 'line',
+                              data                : [60, 80, 70, 67, 80, 77, 100],
+                              backgroundColor     : 'tansparent',
+                              borderColor         : '#ced4da',
+                              pointBorderColor    : '#ced4da',
+                              pointBackgroundColor: '#ced4da',
+                              fill                : false
+                              }]
+                      },
+                      options: {
+                          maintainAspectRatio: false,
+                          tooltips           : {
+                              mode     : mode,
+                              intersect: intersect
+                          },
+                          hover              : {
+                              mode     : mode,
+                              intersect: intersect
+                          },
+                          legend             : {
+                              display: false
+                          },
+                          scales             : {
+                              xAxes: [{
+                                  gridLines: {
+                                      display: false
+                                  },
+                                  ticks    : ticksStyle
+                              }],
+
+                              yAxes: [{
+                                  gridLines : {
+                                      display : true,
+                                      color: '#efefef',
+                                      drawBorder: false,
+                                  },
+                                  ticks    : $.extend({
+                                      beginAtZero : true,
+                                  }, ticksStyle)
+                              }],
+                              
+                          }
+                      }
+                  })
+              })
+              </script>
+            </div> -->
+
             <div class="col-12 col-sm-6 col-md-3">
                 <a href="?content=product">
                 <div class="info-box">

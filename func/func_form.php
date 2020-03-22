@@ -111,7 +111,7 @@ function buat_textarea($label, $nama, $nilai, $place)
 {
 	echo '<div class="form-group">
 			<label>' . $label . '</label>
-			<textarea name="' . $nama . '" class="form-control" placeholder="' . $place . '">' . $nilai . '</textarea>
+			<textarea id="' . $nama . '" name="' . $nama . '" class="form-control" placeholder="' . $place . '">' . $nilai . '</textarea>
 		 </div>
 		 ';
 }

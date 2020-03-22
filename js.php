@@ -44,8 +44,7 @@
 <!-- <script src="./node_modules/admin-lte/dist/js/demo.js"></script> -->
 
 
-<!-- jQuery -->
-<script src="./plugins/jquery/jquery.min.js"></script>
+
 <!-- Bootstrap 4 -->
 <script src="./plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
@@ -64,6 +63,11 @@
 <!-- InputMask -->
 <script src="./plugins/moment/moment.min.js"></script>
 <script src="./plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+
+<!-- chart -->
+<script src="./plugins/chart.js/Chart.min.js"></script>
+<!-- <script src="dist/js/demo.js"></script> -->
+<!-- <script src="dist/js/pages/dashboard3.js"></script> -->
 
 <script>
     $(function() {
@@ -139,5 +143,13 @@ $(document).ready(function(){
         $('#income').val(p_income);
         
     })
+
+    $('#status_income').on('change',function() {
+        if ($('#traffic_source').val()=="Tokopedia" && $('#status_income').val()=="N" && $('#keterangan').val()=="" ) {
+            $('#keterangan').val("income belum masuk dari tokpednya, garansi hangus apabila tidak beri rating 5 pada tokped.");
+        }
+    })
+
 });
 </script>
+

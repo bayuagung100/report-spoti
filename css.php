@@ -47,7 +47,7 @@
 <link rel="stylesheet" href="./plugins/select2/css/select2.min.css">
 <link rel="stylesheet" href="./plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
-<!-- InputMask -->
-<script src="./plugins/moment/moment.min.js"></script>
-<script src="./plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+
+<!-- jQuery -->
+<script src="./plugins/jquery/jquery.min.js"></script>
 
