@@ -147,6 +147,8 @@ $(document).ready(function(){
     $('#status_income').on('change',function() {
         if ($('#traffic_source').val()=="Tokopedia" && $('#status_income').val()=="N" && $('#keterangan').val()=="" ) {
             $('#keterangan').val("income belum masuk dari tokpednya, garansi hangus apabila tidak beri rating 5 pada tokped.");
+        } else if($('#traffic_source').val()=="Tokopedia" && $('#status_income').val()=="Y" && $('#keterangan').val()!="" ) {
+            $('#keterangan').val("garansi hangus apabila tidak beri rating 5 pada tokped.");
         }
     })
 
