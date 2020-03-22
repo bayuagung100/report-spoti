@@ -151,28 +151,6 @@
               </script>
             </div> -->
 
-            <div class="col-12 col-sm-6 col-md-3">
-                <a href="?content=product">
-                <div class="info-box">
-                
-                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-camera-retro"></i></span>
-
-                <div class="info-box-content">
-                    <span class="info-box-text">Product</span>
-                    <span class="info-box-number">
-                    <?php
-                    $query = $mysqli->query("SELECT * FROM product");
-                    $jml = $query->num_rows;
-                    echo $jml;
-                    ?>
-                    </span>
-                </div>
-                
-                </div>
-                </a>
-            </div>
-
-            <div class="clearfix hidden-md-up"></div>
 
           <div class="col-12 col-sm-6 col-md-3">
           <a href="?content=sales">
@@ -180,10 +158,10 @@
               <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Sales</span>
+                <span class="info-box-text">Sales <?php echo date('F');?></span>
                 <span class="info-box-number">
                 <?php
-                $query = $mysqli->query("SELECT * FROM sales");
+                $query = $mysqli->query("SELECT * FROM sales WHERE MONTH(tanggal_order) = MONTH(CURRENT_DATE())" );
                 $jml = $query->num_rows;
                 echo $jml;
                 ?>
@@ -196,35 +174,82 @@
           <div class="clearfix hidden-md-up"></div>
 
           <div class="col-12 col-sm-6 col-md-3">
-                <a href="#">
-                <div class="info-box">
-                
-                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-money-check-alt"></i></span>
+              <a href="#">
+              <div class="info-box">
+              
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-money-check-alt"></i></span>
 
-                <div class="info-box-content">
-                    <span class="info-box-text">Income</span>
-                    <span class="info-box-number">
-                    <?php
-                    $query = $mysqli->query("SELECT SUM(income) AS total FROM sales WHERE status='paid' AND status_income='Y' ");
-                    $row = $query->fetch_array();
-                    echo "Masuk : ".rupiah($row['total']);
-                    $query2 = $mysqli->query("SELECT SUM(income) AS total FROM sales WHERE status='unpaid' OR status='paid' AND status_income='N'  ");
-                    $row2 = $query2->fetch_array();
-                    echo "<br>Belum Masuk : ".rupiah($row2['total']);
-                    ?>
-                    </span>
-                </div>
-                
-                </div>
-                </a>
+              <div class="info-box-content">
+                  <span class="info-box-text">Income <?php echo date('F');?> </span>
+                  <span class="info-box-number">
+                  <?php
+                  $query = $mysqli->query("SELECT SUM(income) AS total FROM sales WHERE MONTH(tanggal_order) = MONTH(CURRENT_DATE()) AND status='paid' AND status_income='Y' ");
+                  $row = $query->fetch_array();
+                  echo "Masuk : ".rupiah($row['total']);
+                  $query2 = $mysqli->query("SELECT SUM(income) AS total FROM sales WHERE MONTH(tanggal_order) = MONTH(CURRENT_DATE()) AND status='unpaid' OR status='paid' AND status_income='N'  ");
+                  $row2 = $query2->fetch_array();
+                  echo "<br>Belum : ".rupiah($row2['total']);
+                  ?>
+                  </span>
+              </div>
+              
+              </div>
+              </a>
+          </div>
+
+          <div class="clearfix hidden-md-up"></div>
+
+          <div class="col-12 col-sm-6 col-md-3">
+          <a href="?content=sales">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Sales</span>
+                <span class="info-box-number">
+                <?php
+                $query = $mysqli->query("SELECT * FROM sales" );
+                $jml = $query->num_rows;
+                echo $jml;
+                ?>
+                </span>
+              </div>
             </div>
+          </a>
+          </div>
 
-            <div class="clearfix hidden-md-up"></div>
+          <div class="clearfix hidden-md-up"></div>
+
+          <div class="col-12 col-sm-6 col-md-3">
+              <a href="#">
+              <div class="info-box">
+              
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-money-check-alt"></i></span>
+
+              <div class="info-box-content">
+                  <span class="info-box-text">Total Income</span>
+                  <span class="info-box-number">
+                  <?php
+                  $query = $mysqli->query("SELECT SUM(income) AS total FROM sales WHERE status='paid' AND status_income='Y' ");
+                  $row = $query->fetch_array();
+                  echo "Masuk : ".rupiah($row['total']);
+                  $query2 = $mysqli->query("SELECT SUM(income) AS total FROM sales WHERE status='unpaid' OR status='paid' AND status_income='N'  ");
+                  $row2 = $query2->fetch_array();
+                  echo "<br>Belum : ".rupiah($row2['total']);
+                  ?>
+                  </span>
+              </div>
+              
+              </div>
+              </a>
+          </div>
+
+          <div class="clearfix hidden-md-up"></div>
 
           <div class="col-12 col-sm-6 col-md-3">
           <a href="#">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-money-check"></i></span>
+              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-money-check"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Pengeluaran</span>
@@ -234,6 +259,29 @@
               </div>
             </div>
           </a>
+          </div>
+
+          <div class="clearfix hidden-md-up"></div>
+
+          <div class="col-12 col-sm-6 col-md-3">
+              <a href="?content=product">
+              <div class="info-box">
+              
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-camera-retro"></i></span>
+
+              <div class="info-box-content">
+                  <span class="info-box-text">Product</span>
+                  <span class="info-box-number">
+                  <?php
+                  $query = $mysqli->query("SELECT * FROM product");
+                  $jml = $query->num_rows;
+                  echo $jml;
+                  ?>
+                  </span>
+              </div>
+              
+              </div>
+              </a>
           </div>
 
           <div class="clearfix hidden-md-up"></div>
