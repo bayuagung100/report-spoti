@@ -325,6 +325,75 @@
             </div>
           </a>
           </div>
+
+          <div class="col-lg-12 col-sm-6 col-md-3">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Detail Total Income</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-bordered">
+                  <thead>                  
+                    <tr>
+                      <th>Tokopedia (kotor)</th>
+                      <th>Tokopedia (bersih)</th>
+                      <th>Sosmed (kotor)</th>
+                      <th>Sosmed (bersih)</th>
+                      <th>Total Income (kotor)</th>
+                      <th>Total Income (bersih)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                      <?php
+                      $query3 = $mysqli->query("SELECT SUM(harga) AS total FROM sales WHERE traffic_source='Tokopedia' ");
+                      $row3 = $query3->fetch_array();
+                      echo rupiah($row3['total']);
+                      ?>
+                      </td>
+                      <td>
+                      <?php
+                      $query4 = $mysqli->query("SELECT SUM(income) AS total FROM sales WHERE traffic_source='Tokopedia' ");
+                      $row4 = $query4->fetch_array();
+                      echo rupiah($row4['total']);
+                      ?>
+                      </td>
+                      <td>
+                      <?php
+                      $query5 = $mysqli->query("SELECT SUM(harga) AS total FROM sales WHERE traffic_source!='Tokopedia' ");
+                      $row5 = $query5->fetch_array();
+                      echo rupiah($row5['total']);
+                      ?>
+                      </td>
+                      <td>
+                      <?php
+                      $query6 = $mysqli->query("SELECT SUM(income) AS total FROM sales WHERE traffic_source!='Tokopedia' ");
+                      $row6 = $query6->fetch_array();
+                      echo rupiah($row6['total']);
+                      ?>
+                      </td>
+                      <td>
+                      <?php
+                      $query7 = $mysqli->query("SELECT SUM(harga) AS total FROM sales");
+                      $row7 = $query7->fetch_array();
+                      echo rupiah($row7['total']);
+                      ?>
+                      </td>
+                      <td>
+                      <?php
+                      $query8 = $mysqli->query("SELECT SUM(income) AS total FROM sales");
+                      $row8 = $query8->fetch_array();
+                      echo rupiah($row8['total']);
+                      ?>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>              
+            </div>
+          </div>
     </div>
   </div>
 </section>
