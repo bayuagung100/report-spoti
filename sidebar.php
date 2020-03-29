@@ -17,6 +17,14 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="?content=pengeluaran" class="nav-link">
+                <i class="nav-icon fas fa-money-check"></i>
+                <p>
+                    Pengeluaran
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="?content=product" class="nav-link">
                 <i class="nav-icon fas fa-camera-retro"></i>
                 <p>

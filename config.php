@@ -1,15 +1,15 @@
 <?php
 //server
-$servername = "localhost";
-$username = "u328098603_spoti";
-$password = "bayuagung123";
-$database = "u328098603_spoti";
-
-//remote server
-// $servername = "sql261.main-hosting.eu";
+// $servername = "localhost";
 // $username = "u328098603_spoti";
 // $password = "bayuagung123";
 // $database = "u328098603_spoti";
+
+//remote server
+$servername = "sql261.main-hosting.eu";
+$username = "u328098603_spoti";
+$password = "bayuagung123";
+$database = "u328098603_spoti";
 
 //localpc
 // $servername = "localhost";

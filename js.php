@@ -97,6 +97,8 @@
         $('#tanggal_order').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
 
         $('#tanggal_garansi').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+
+        $('#tanggal').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
     });
 </script>
 
