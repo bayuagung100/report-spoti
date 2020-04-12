@@ -99,6 +99,10 @@
         $('#tanggal_garansi').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
 
         $('#tanggal').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+
+        $('#created').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+
+        $('#next_payment').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
     });
 </script>
 
