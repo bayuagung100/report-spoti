@@ -396,81 +396,171 @@
             </div>
           </a>
           </div>
-
-          <div class="col-lg-12 col-sm-6 col-md-3">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Detail Income <?php echo date('Y');?></h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body table-responsive p-0">
-                <table class="table table-bordered">
-                  <thead>                  
-                    <tr>
-                      <th>Tokopedia</th>
-                      <th>Sosmed</th>
-                      <th>Income</th>
-                      <th>Pengeluaran</th>
-                      <th>Profit</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                      <?php
-                      $query3 = $mysqli->query("SELECT SUM(harga) AS total FROM sales WHERE traffic_source='Tokopedia' ");
-                      $row3 = $query3->fetch_array();
-                      echo "Kotor: ".rupiah($row3['total'])."<br>";
-                      $query4 = $mysqli->query("SELECT SUM(income) AS total FROM sales WHERE traffic_source='Tokopedia' ");
-                      $row4 = $query4->fetch_array();
-                      echo "Bersih: ".rupiah($row4['total']);
-                      ?>
-                      </td>
-                      <td>
-                      <?php
-                      $query5 = $mysqli->query("SELECT SUM(harga) AS total FROM sales WHERE traffic_source!='Tokopedia' ");
-                      $row5 = $query5->fetch_array();
-                      echo "Kotor: ".rupiah($row5['total'])."<br>";
-                      $query6 = $mysqli->query("SELECT SUM(income) AS total FROM sales WHERE traffic_source!='Tokopedia' ");
-                      $row6 = $query6->fetch_array();
-                      echo "Bersih: ".rupiah($row6['total']);
-                      ?>
-                      </td>
-                      <td>
-                      <?php
-                      $query7 = $mysqli->query("SELECT SUM(harga) AS total FROM sales");
-                      $row7 = $query7->fetch_array();
-                      echo "Kotor: ".rupiah($row7['total'])."<br>";
-                      $query8 = $mysqli->query("SELECT SUM(income) AS total FROM sales");
-                      $row8 = $query8->fetch_array();
-                      $query9 = $mysqli->query("SELECT SUM(nominal) AS outcome FROM pengeluaran");
-                      $row9 = $query9->fetch_array();
-                      echo "Bersih: ".rupiah($row8['total']);
-                      ?>
-                      </td>
-                      <td>
-                      <?php
-                      $query9 = $mysqli->query("SELECT SUM(nominal) AS outcome FROM pengeluaran");
-                      $row9 = $query9->fetch_array();
-                      echo rupiah($row9['outcome']);
-                      ?>
-                      </td>
-                      <td>
-                      <?php
-                      $query10 = $mysqli->query("SELECT SUM(income) AS total FROM sales");
-                      $row10 = $query10->fetch_array();
-                      $query11 = $mysqli->query("SELECT SUM(nominal) AS outcome FROM pengeluaran");
-                      $row11 = $query11->fetch_array();
-                      echo rupiah($row10['total']-$row11['outcome']);
-                      ?>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>              
-            </div>
-          </div>
     </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="container-fluid">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Detail Income <?php echo date('Y');?></h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0" style="height: 300px;overflow: scroll;">
+          <table class="table table-bordered">
+            <thead>                  
+              <tr>
+                <th>Bulan</th>
+                <th>Tokopedia</th>
+                <th>Sosmed</th>
+                <th>Income</th>
+                <th>Pengeluaran</th>
+                <th>Profit</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php 
+            $kalender=array();
+            $kalender[0]['month']= date('Y').'-01-01';
+            $kalender[1]['month']= date('Y').'-02-01';
+            $kalender[2]['month']= date('Y').'-03-01';
+            $kalender[3]['month']= date('Y').'-04-01';
+            $kalender[4]['month']= date('Y').'-05-01';
+            $kalender[5]['month']= date('Y').'-06-01';
+            $kalender[6]['month']= date('Y').'-07-01';
+            $kalender[7]['month']= date('Y').'-08-01';
+            $kalender[8]['month']= date('Y').'-09-01';
+            $kalender[9]['month']= date('Y').'-10-01';
+            $kalender[10]['month']= date('Y').'-11-01';
+            $kalender[11]['month']= date('Y').'-12-01';
+
+            $cm = count($kalender);
+            // echo $kalender[0];
+            ?>
+              <!-- <tr>
+                <td>
+                  <?php 
+                  $date = new DateTime($kalender[0]['month']);
+                  echo $date->format('F');
+                  ?>
+                </td>
+                <td>
+                  <?php
+                  $query3 = $mysqli->query("SELECT SUM(harga) AS total FROM sales WHERE traffic_source='Tokopedia' ");
+                  $row3 = $query3->fetch_array();
+                  echo "Kotor: ".rupiah($row3['total'])."<br>";
+                  $query4 = $mysqli->query("SELECT SUM(income) AS total FROM sales WHERE traffic_source='Tokopedia' ");
+                  $row4 = $query4->fetch_array();
+                  echo "Bersih: ".rupiah($row4['total']);
+                  ?>
+                </td>
+                <td>
+                  <?php
+                  $query5 = $mysqli->query("SELECT SUM(harga) AS total FROM sales WHERE traffic_source!='Tokopedia' ");
+                  $row5 = $query5->fetch_array();
+                  echo "Kotor: ".rupiah($row5['total'])."<br>";
+                  $query6 = $mysqli->query("SELECT SUM(income) AS total FROM sales WHERE traffic_source!='Tokopedia' ");
+                  $row6 = $query6->fetch_array();
+                  echo "Bersih: ".rupiah($row6['total']);
+                  ?>
+                </td>
+                <td>
+                  <?php
+                  $query7 = $mysqli->query("SELECT SUM(harga) AS total FROM sales");
+                  $row7 = $query7->fetch_array();
+                  echo "Kotor: ".rupiah($row7['total'])."<br>";
+                  $query8 = $mysqli->query("SELECT SUM(income) AS total FROM sales");
+                  $row8 = $query8->fetch_array();
+                  $query9 = $mysqli->query("SELECT SUM(nominal) AS outcome FROM pengeluaran");
+                  $row9 = $query9->fetch_array();
+                  echo "Bersih: ".rupiah($row8['total']);
+                  ?>
+                </td>
+                <td>
+                  <?php
+                  $query9 = $mysqli->query("SELECT SUM(nominal) AS outcome FROM pengeluaran");
+                  $row9 = $query9->fetch_array();
+                  echo rupiah($row9['outcome']);
+                  ?>
+                </td>
+                <td>
+                  <?php
+                  $query10 = $mysqli->query("SELECT SUM(income) AS total FROM sales");
+                  $row10 = $query10->fetch_array();
+                  $query11 = $mysqli->query("SELECT SUM(nominal) AS outcome FROM pengeluaran");
+                  $row11 = $query11->fetch_array();
+                  echo rupiah($row10['total']-$row11['outcome']);
+                  ?>
+                </td>
+              </tr> -->
+              <?php 
+              foreach ($kalender as $key => $value) {
+                $date = new DateTime($value['month']);
+
+                $tgl = $date->format('F');
+              ?>
+
+              <tr>
+                <td>
+                  <?php echo $date->format('F');?>
+                </td>
+                <td>
+                  <?php
+                  $query3 = $mysqli->query("SELECT SUM(harga) AS total FROM sales WHERE traffic_source='Tokopedia' AND monthname(tanggal_order)='$tgl'");
+                  $row3 = $query3->fetch_array();
+                  echo "Kotor: ".rupiah($row3['total'])."<br>";
+                  $query4 = $mysqli->query("SELECT SUM(income) AS total FROM sales WHERE traffic_source='Tokopedia' AND monthname(tanggal_order)='$tgl'");
+                  $row4 = $query4->fetch_array();
+                  echo "Bersih: ".rupiah($row4['total']);
+                  ?>
+                </td>
+                <td>
+                  <?php
+                  $query5 = $mysqli->query("SELECT SUM(harga) AS total FROM sales WHERE traffic_source!='Tokopedia' AND monthname(tanggal_order)='$tgl'");
+                  $row5 = $query5->fetch_array();
+                  echo "Kotor: ".rupiah($row5['total'])."<br>";
+                  $query6 = $mysqli->query("SELECT SUM(income) AS total FROM sales WHERE traffic_source!='Tokopedia' AND monthname(tanggal_order)='$tgl'");
+                  $row6 = $query6->fetch_array();
+                  echo "Bersih: ".rupiah($row6['total']);
+                  ?>
+                </td>
+                <td>
+                  <?php
+                  $query7 = $mysqli->query("SELECT SUM(harga) AS total FROM sales WHERE monthname(tanggal_order)='$tgl'");
+                  $row7 = $query7->fetch_array();
+                  echo "Kotor: ".rupiah($row7['total'])."<br>";
+                  $query8 = $mysqli->query("SELECT SUM(income) AS total FROM sales WHERE monthname(tanggal_order)='$tgl'");
+                  $row8 = $query8->fetch_array();
+                  $query9 = $mysqli->query("SELECT SUM(nominal) AS outcome FROM pengeluaran WHERE monthname(tanggal)='$tgl'");
+                  $row9 = $query9->fetch_array();
+                  echo "Bersih: ".rupiah($row8['total']);
+                  ?>
+                </td>
+                <td>
+                  <?php
+                  $query9 = $mysqli->query("SELECT SUM(nominal) AS outcome FROM pengeluaran WHERE monthname(tanggal)='$tgl'");
+                  $row9 = $query9->fetch_array();
+                  echo rupiah($row9['outcome']);
+                  ?>
+                </td>
+                <td>
+                  <?php
+                  $query10 = $mysqli->query("SELECT SUM(income) AS total FROM sales WHERE monthname(tanggal_order)='$tgl'");
+                  $row10 = $query10->fetch_array();
+                  $query11 = $mysqli->query("SELECT SUM(nominal) AS outcome FROM pengeluaran WHERE monthname(tanggal)='$tgl'");
+                  $row11 = $query11->fetch_array();
+                  echo rupiah($row10['total']-$row11['outcome']);
+                  ?>
+                </td>
+              </tr>
+              <?php
+              }
+              ?>
+            </tbody>
+          </table>
+        </div>              
+      </div>
   </div>
 </section>
 
